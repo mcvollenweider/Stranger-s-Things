@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
@@ -8,16 +9,45 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Header } from "./components";
+import { Header, Posts } from "./components";
 
 const App = () => {
-  return (
-    <Router>
-      <div id="App">
-        <Header />
-      </div>
-    </Router>
-  );
+const [allPosts, setAllPosts] = useState([]);
+
+const fetchAllPosts = async ()=>{
+try {
+  const{data}= await axios.get('https://strangers-things.herokuapp.com/api/2106-UNF-RM-WEB-PT/posts')
+
+console.log(data)
+
+setAllPosts(data)
+
+
+}
+catch(err){
+  console.log(error)
+}
+
+}
+
+useEffect(()=>{
+
+fetchAllPosts()
+
+},[])
+
+return (
+  <div id="App">
+    <Header />
+    <Posts allPosts={allPosts}/>
+  </div>
+);
+
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+
+ReactDOM.render(
+<Router>
+<App />
+</Router>,
+ document.getElementById("root"));
