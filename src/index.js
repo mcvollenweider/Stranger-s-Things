@@ -10,7 +10,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Header, Posts, NavBar, Register, Login, NewPost } from "./components";
+import { Header, Posts, NavBar, Register, Login, NewPostForm } from "./components";
 
 const App = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -20,6 +20,10 @@ const App = () => {
   const fetchAllPosts = async () => {
     try {
       const myToken = getToken();
+
+      if(myToken){
+        setIsLoggedIn(true);
+      }
 
       const { data } = await axios.get(
         "https://strangers-things.herokuapp.com/api/2106-UNF-RM-WEB-PT/posts",
@@ -42,7 +46,9 @@ const App = () => {
   return (
     <div id="App">
       <Header />
-      <NavBar />
+      <NavBar 
+      isLoggedIn={isLoggedIn}
+      setIsLoggedIn={setIsLoggedIn}/>
       <Switch>
         <Route path="/register">
           <Register 
@@ -56,7 +62,9 @@ const App = () => {
         </Route>
         <Route path="/posts">
           <Posts allPosts={allPosts} />
-          <NewPost />
+          <NewPostForm 
+          setAllPosts={setAllPosts}
+          allPosts={allPosts} />
         </Route>
       </Switch>
     </div>

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { registerUser } from "../api";
-import { storeToken } from "../auth";
+import { storeToken, storeUser } from "../auth";
 
-const Register = ({setIsLoggedIn, setIsLoading}) => {
-
+const Register = ({ setIsLoggedIn, setIsLoading }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -12,18 +11,16 @@ const Register = ({setIsLoggedIn, setIsLoading}) => {
         id="register"
         onSubmit={async (event) => {
           event.preventDefault();
-          setIsLoading(true)
-
+          setIsLoading(true);
           try {
-            const { data } = await registerUser(userName, password)
-            console.log(data, "!!!")
-            storeToken(data.token)
-            setIsLoggedIn(true)
-           
+            const { data } = await registerUser(userName, password);
+            storeToken(data.token);
+            storeUser(userName);
+            setIsLoggedIn(true);
           } catch (error) {
             console.log(error);
-          } finally{
-            setIsLoading(false)
+          } finally {
+            setIsLoading(false);
           }
         }}
       >
@@ -35,7 +32,6 @@ const Register = ({setIsLoggedIn, setIsLoading}) => {
             placeholder="Enter UserName"
             value={userName}
             onChange={(event) => {
-              console.log(event.target.value);
               setUserName(event.target.value);
             }}
           ></input>
@@ -48,7 +44,6 @@ const Register = ({setIsLoggedIn, setIsLoading}) => {
             placeholder="Enter Password"
             value={password}
             onChange={(event) => {
-              console.log(event.target.value);
               setPassword(event.target.value);
             }}
           ></input>

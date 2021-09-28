@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { getToken } from "../auth";
 const BASE = "https://strangers-things.herokuapp.com/api/2106-UNF-RM-WEB-PT";
 
 // this is an example for an api call with axios
@@ -40,18 +40,21 @@ export async function loginUser(username, password) {
   }
 }
 
-export async function createPost(title, description, user, token) {
+export async function createPost(title, description, price) {
+  const myToken = getToken()
   try {
     const { data } = await axios.post(
       `${BASE}/posts`,
-      {
+     {post: {
         title: title,
         description: description,
-        author: user,
-      },
+        price: price
+      }},
       {
         headers: {
-          "auth-token": token,
+          "Content-Type": "application/JSON",
+          
+          Authorization: `Bearer ${myToken}`,
         },
       }
     );
