@@ -1,17 +1,19 @@
 import React from "react";
-
+import { SinglePost } from ".";
+import { Link } from "react-router-dom";
 const Posts = ({ allPosts }) => {
-
   return (
     <div className="post-main-container">
       {allPosts.length
         ? allPosts.map((posts) => {
-
             return (
-              <div key ={posts._id} className="post-card">
-                <h3>{posts.title}</h3>
-                <p>{posts.description}</p>
-              </div>
+              <Link
+                to={`/posts/${posts._id}`}
+                key={posts._id}
+                className="link-tag"
+              >
+                <SinglePost posts={posts} />;
+              </Link>
             );
           })
         : null}
