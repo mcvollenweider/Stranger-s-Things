@@ -3,7 +3,7 @@ import { SinglePost } from ".";
 import { Link } from "react-router-dom";
 const Posts = ({ allPosts }) => {
   return (
-    <div className="post-main-container">
+    <div className="posts-main-container">
       {allPosts.length
         ? allPosts.map((posts) => {
             return (
@@ -20,4 +20,5 @@ const Posts = ({ allPosts }) => {
     </div>
   );
 };
+
 export default Posts;
