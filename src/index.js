@@ -62,9 +62,6 @@ const App = () => {
           <NewPostForm setAllPosts={setAllPosts} allPosts={allPosts} />
         </Route>
       </Switch>
-      <Route path="/posts/:postId">
-        <SinglePostPage allPosts={allPosts} />
-      </Route>
     </div>
   );
 };
