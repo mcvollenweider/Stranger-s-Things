@@ -7,10 +7,19 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
+  Redirect
 } from "react-router-dom";
 
-import { Header, Posts, NavBar, Register, Login, NewPostForm } from "./components";
+import {
+  Header,
+  Posts,
+  NavBar,
+  Register,
+  Login,
+  NewPostForm,
+  SinglePostPage,
+  SinglePost
+} from "./components";
 
 const App = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -21,7 +30,7 @@ const App = () => {
     try {
       const myToken = getToken();
 
-      if(myToken){
+      if (myToken) {
         setIsLoggedIn(true);
       }
 
@@ -29,8 +38,8 @@ const App = () => {
         "https://strangers-things.herokuapp.com/api/2106-UNF-RM-WEB-PT/posts",
         {
           headers: {
-            "auth-token": myToken,
-          },
+            "auth-token": myToken
+          }
         }
       );
       setAllPosts(data.data.posts);
@@ -46,27 +55,22 @@ const App = () => {
   return (
     <div id="App">
       <Header />
-      <NavBar 
-      isLoggedIn={isLoggedIn}
-      setIsLoggedIn={setIsLoggedIn}/>
+      <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Switch>
         <Route path="/register">
-          <Register 
-          setIsLoggedIn={setIsLoggedIn}
-          setIsLoading={setIsLoading}  />
+          <Register setIsLoggedIn={setIsLoggedIn} setIsLoading={setIsLoading} />
         </Route>
         <Route path="/login">
-          <Login 
-          setIsLoggedIn={setIsLoggedIn}
-          setIsLoading={setIsLoading} />
+          <Login setIsLoggedIn={setIsLoggedIn} setIsLoading={setIsLoading} />
         </Route>
         <Route path="/posts">
           <Posts allPosts={allPosts} />
-          <NewPostForm 
-          setAllPosts={setAllPosts}
-          allPosts={allPosts} />
+          <NewPostForm setAllPosts={setAllPosts} allPosts={allPosts} />
         </Route>
       </Switch>
+      <Route path="/posts/:postId">
+        <SinglePostPage allPosts={allPosts} />
+      </Route>
     </div>
   );
 };
