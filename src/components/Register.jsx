@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { registerUser } from "../api";
 import { storeToken, storeUser } from "../auth";
+import { Button } from 'semantic-ui-react'
 
 const Register = ({ setIsLoggedIn, setIsLoading }) => {
   const [userName, setUserName] = useState("");
@@ -48,7 +49,7 @@ const Register = ({ setIsLoggedIn, setIsLoading }) => {
             }}
           ></input>
         </fieldset>
-        <button>register</button>
+        <button className="ui button">Register</button>
       </form>
     </div>
   );

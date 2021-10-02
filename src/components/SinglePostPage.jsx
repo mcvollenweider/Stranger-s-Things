@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { SinglePost } from ".";
+import { Container } from 'semantic-ui-react'
 
 const SinglePostPage = ({ allPosts }) => {
   const { postsId } = useParams();
@@ -12,7 +13,7 @@ const SinglePostPage = ({ allPosts }) => {
       return false;
     }
   });
-console.log(myPost,"!!!")
+
   if (!myPost) {
     return (
       <div className="post-card">
@@ -22,7 +23,7 @@ console.log(myPost,"!!!")
   }
 
   return (
-    <div className="post-main-container">
+    <div className="ui container">
       <SinglePost posts={myPost} />
     </div>
   );

@@ -48,7 +48,7 @@ const Login = ({ setIsLoggedIn, setIsLoading }) => {
             }}
           ></input>
         </fieldset>
-        <button>login</button>
+        <button className="ui button">Login</button>
       </form>
     </div>
   );

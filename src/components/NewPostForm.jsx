@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { createPost } from "../api";
 import { getToken, getUser } from "../auth";
+import { Button } from 'semantic-ui-react';
+import { Container, Form } from 'semantic-ui-react'
 
 const NewPostForm = ({setAllPosts, allPosts}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price,setPrice]=useState("")
   return (
-    <div className="new-post-component-main-container">
-      <form
+    <div className="ui container">
+      <form className="ui form"
         id="newPostSubmit"
         onSubmit={async (event) => {
           event.preventDefault();
           try {
             const {data} = await createPost(title, description, price)
             setAllPosts([data.post, ...allPosts])
-            console.log(data,"!!!!!!!!")
+            console.log(setAllPosts)
 
           } catch (error) {
             console.log(error);
@@ -59,7 +61,7 @@ const NewPostForm = ({setAllPosts, allPosts}) => {
             }}
           ></input>
         </fieldset>
-        <button typeof="submit">Submit</button>
+        <button className="ui button" typeof="submit">Submit</button>
       </form>
     </div>
   );
