@@ -77,7 +77,7 @@ export async function deletePost(postID) {
         },
       }
     );
-    console.log(data)
+    
     return data;
   } catch (error) {
     throw error;
@@ -95,7 +95,7 @@ export async function getUserObject() {
         Authorization: `Bearer ${myToken}`
       }
     });
-    console.log(data);
+    
     return data;
   } catch (error) {
     throw error;
@@ -118,7 +118,7 @@ export async function createMessages(post_id, content) {
         }
       }
     );
-    console.log(data);
+    
     return data;
   } catch (error) {
     throw error;
@@ -134,7 +134,7 @@ export async function getUserID(userId) {
         Authorization: `Bearer ${myToken}`
       }
     });
-    console.log(data.data.messages);
+    
     return data.data._id;
   } catch (error) {
     throw error;
