@@ -17,7 +17,7 @@ const NewPostForm = ({setAllPosts, allPosts}) => {
           try {
             const {data} = await createPost(title, description, price)
             setAllPosts([data.post, ...allPosts])
-            console.log(setAllPosts)
+            
 
           } catch (error) {
             console.log(error);

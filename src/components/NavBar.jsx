@@ -37,6 +37,9 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
         </div>
         </div>
       )}
+      <Link className="nav-bar-link" to="/userpage">
+        User Page
+      </Link>
     </div>
   );
 };

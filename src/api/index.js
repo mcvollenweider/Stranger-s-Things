@@ -63,3 +63,80 @@ export async function createPost(title, description, price) {
     throw error;
   }
 }
+
+export async function deletePost(postID) {
+  const myToken = getToken()
+  try {
+    const { data } = await axios.delete(
+      `${BASE}/posts/${postID}`,
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          
+          Authorization: `Bearer ${myToken}`,
+        },
+      }
+    );
+    console.log(data)
+    return data;
+  } catch (error) {
+    throw error;
+  }finally{
+    location.reload();
+  }
+}
+
+export async function getUserObject() {
+  const myToken = getToken();
+  try {
+    const { data } = await axios.get(`${BASE}/users/me`, {
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: `Bearer ${myToken}`
+      }
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function createMessages(post_id, content) {
+  const myToken = getToken();
+  try {
+    const { data } = await axios.post(
+      `${BASE}/posts/${post_id}/messages`,
+      {
+        message: {
+          content: content
+        }
+      },
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `Bearer ${myToken}`
+        }
+      }
+    );
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function getUserID(userId) {
+  const myToken = getToken();
+  try {
+    const { data } = await axios.get(`${BASE}/users/me`, {
+      headers: {
+        userId:userId,
+        "Content-Type": "application/JSON",
+        Authorization: `Bearer ${myToken}`
+      }
+    });
+    console.log(data.data.messages);
+    return data.data._id;
+  } catch (error) {
+    throw error;
+  }
+}

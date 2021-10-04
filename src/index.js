@@ -21,6 +21,7 @@ import {
   NewPostForm,
   SinglePostPage,
   SearchBar,
+  UserPage
 } from "./components";
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
+  
 
   const fetchAllPosts = async () => {
     try {
@@ -45,7 +47,9 @@ const App = () => {
             "auth-token": myToken,
           },
         }
+        
       );
+    
       setAllPosts(data.data.posts);
     } catch (error) {
       console.log(error);
@@ -92,6 +96,9 @@ const App = () => {
             <NewPostForm setAllPosts={setAllPosts} allPosts={allPosts} />
           </div>
           </div>
+        </Route>
+        <Route path="/userpage">
+          <UserPage />
         </Route>
       </Switch>
     </div>

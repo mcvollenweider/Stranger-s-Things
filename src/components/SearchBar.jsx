@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Form } from 'semantic-ui-react'
+
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
   return (
     <div className="ui container">

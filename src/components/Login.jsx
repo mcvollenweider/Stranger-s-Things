@@ -14,6 +14,7 @@ const Login = ({ setIsLoggedIn, setIsLoading }) => {
           setIsLoading(true);
           try {
             const { data } = await loginUser(userName, password);
+            
             storeToken(data.token);
             storeUser(userName);
             setIsLoggedIn(true);
@@ -51,6 +52,7 @@ const Login = ({ setIsLoggedIn, setIsLoading }) => {
         <button className="ui button">Login</button>
       </form>
     </div>
+    
   );
 };
 export default Login;
