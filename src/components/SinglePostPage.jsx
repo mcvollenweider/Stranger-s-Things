@@ -34,7 +34,6 @@ const SinglePostPage = ({ allPosts }) => {
       </div>
     );
   }
-  console.log(authorId, "line39");
 
   const DeleteMe = ()=> {
     if (authorId === userId) {
